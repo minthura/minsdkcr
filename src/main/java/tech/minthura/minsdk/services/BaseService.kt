@@ -42,7 +42,7 @@ open class BaseService {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             handleApiError(throwable, onError)
         }
-        return scope.launch(exceptionHandler) {
+        return scope.launch(Dispatchers.IO + exceptionHandler) {
             val response = suspend()
             withContext(Dispatchers.Main){
                 onSuccess(response)
