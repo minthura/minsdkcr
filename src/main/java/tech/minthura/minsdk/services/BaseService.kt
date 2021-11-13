@@ -5,15 +5,12 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import io.reactivex.rxjava3.annotations.NonNull
 import kotlinx.coroutines.*
 import retrofit2.HttpException
-import retrofit2.Response
 import tech.minthura.minsdk.models.Error
 import tech.minthura.minsdk.models.ErrorResponse
 import tech.minthura.minsdk.models.Errors
 import java.io.IOException
-import java.lang.Exception
 import javax.net.ssl.HttpsURLConnection
 
 const val TAG = "MinSDK"
@@ -41,7 +38,7 @@ open class BaseService {
         }
     }
 
-    open fun <T : Any>coroutineLaunch(scope: CoroutineScope, suspend: suspend () -> T, onSuccess : (t : T) -> Unit, onError : (error : Error) -> Unit) : @NonNull Job {
+    open fun <T : Any>coroutineLaunch(scope: CoroutineScope, suspend: suspend () -> T, onSuccess : (t : T) -> Unit, onError : (error : Error) -> Unit) : Job {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             handleApiError(throwable, onError)
         }

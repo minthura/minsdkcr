@@ -1,7 +1,5 @@
 package tech.minthura.minsdk
 
-import io.reactivex.rxjava3.annotations.NonNull
-import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import tech.minthura.minsdk.models.Error
@@ -15,7 +13,7 @@ class Session(private val minSDK: MinSDK) {
         }
     }
 
-    fun getMock(scope: CoroutineScope, onSuccess: (Mock) -> Unit, onError : (error : Error) -> Unit): @NonNull Job {
+    fun getMock(scope: CoroutineScope, onSuccess: (Mock) -> Unit, onError : (error : Error) -> Unit): Job {
         return minSDK.getMock(scope, onSuccess, onError)
     }
 }
